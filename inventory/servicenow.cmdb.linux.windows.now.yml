@@ -1,0 +1,7 @@
+plugin: servicenow.itsm.now
+query:
+  - os: = Linux Red Hat
+  - os: = Windows XP
+keyed_groups:
+  - key: os
+    prefix: os

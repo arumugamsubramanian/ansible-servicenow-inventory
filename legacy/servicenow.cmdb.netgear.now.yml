@@ -1,0 +1,18 @@
+plugin: servicenow.servicenow.now
+table: cmdb_ci_netgear
+fields: [name,manufacturer,u_ansible_group,ip_address,u_operating_system,sys_tags,serial_number,model_number,sys_id,snmp_sys_location]
+selection_order: [name,ip_address]
+compose:
+  sn_groups: sn_u_ansible_group.replace(" ", "").split(',')
+  sn_tags: sn_sys_tags.replace(" ", "").split(',')
+  ansible_network_os: sn_u_operating_system
+  ansible_host: sn_ip_address
+keyed_groups:
+  - key: sn_groups | lower
+    prefix: '_snow'
+    separator: '_'
+  - key: sn_tags | lower
+    prefix: '_tag'
+  - key: sn_manufacturer | lower
+    prefix: '_vendor'
+    separator: '_'

@@ -1,0 +1,13 @@
+plugin: servicenow.itsm.now
+table: cmdb_ci_linux_server
+inventory_hostname_source: ip_address
+columns:
+  - os
+  - ip_address
+  - name
+  - host_name
+  - fqdn
+groups:
+  ubuntu_ssh_kind_vpc: >-
+    os == "Linux Ubuntu" and 
+    ip_address in ("172.18.0.7")
